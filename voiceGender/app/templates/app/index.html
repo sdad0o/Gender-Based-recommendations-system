@@ -1,0 +1,158 @@
+{% extends "app/base.html" %}
+{% load static %}
+{% block title %}Home{% endblock title %}
+{% block main-content %}
+{% if request.user.is_authenticated %}
+<script>
+    const csrfToken = "{{ csrf_token }}";
+</script>
+<link rel="stylesheet" href="{% static 'app/css/index.css' %}">
+<div class="sub">
+    <h1> welcome to our gender-based recommendation system</h1>
+    <p class="pargraph">
+      To get started, just record your voice!
+    </p>
+</div>
+<br>
+<style>
+    .record-btn {
+        background-color: #ffffff;
+        border: none;
+        color: rgb(57, 114, 150);
+        padding: 15px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 25px;
+        transition: background-color 0.7s ease;
+    }
+    .record-btn:hover {
+        background-color: rgb(26, 54, 71);
+        color: #fff;
+
+    }
+    
+    /* Responsive styling */
+    @media screen and (max-width: 600px) {
+        .sub {
+            text-align: center;
+        }
+        .pargraph {
+            font-size: 14px;
+            text-align: center;
+        }
+    }
+</style>
+<button id="toggleBtn" class="record-btn" onclick="toggleRecording()">Start Recording</button>
+<br>
+<p id="result"></p>
+
+<br>
+<div class="credits">
+    or you can upload an audio file instead
+</div>
+<input type="file" id="file"  accept="audio/*" />
+<label for="file" class="btn-2">Upload</label>
+</div>
+<script>
+    let mediaRecorder;
+    let audioChunks = [];
+    let isRecording = false;
+
+    function toggleRecording() {
+        if (isRecording) {
+            stopRecording();
+        } else {
+            startRecording();
+        }
+        isRecording = !isRecording;
+    }
+
+    function startRecording() {
+        navigator.mediaDevices.getUserMedia({ audio: true })
+            .then(stream => {
+                mediaRecorder = new MediaRecorder(stream);
+                mediaRecorder.start();
+
+                document.getElementById("toggleBtn").innerText = "Stop Recording";
+
+                audioChunks = [];
+                mediaRecorder.addEventListener("dataavailable", event => {
+                    audioChunks.push(event.data);
+                });
+            })
+            .catch(error => {
+                console.error("Error:", error);
+            });
+    }
+
+    function stopRecording() {
+        mediaRecorder.stop();
+
+        mediaRecorder.addEventListener("stop", () => {
+            const audioBlob = new Blob(audioChunks, { type: 'audio/wav' });
+            const formData = new FormData();
+            formData.append("file", audioBlob, "recording.wav");
+
+            fetch("upload/", {
+                method: "POST",
+                body: formData,
+                headers: {
+                    'X-CSRFToken': csrfToken
+                }
+            })
+                .then(response => response.json())
+                .then(data => {
+                    const maleProb = data.male_prob;
+                    const femaleProb = data.female_prob;
+                    if (maleProb > femaleProb) {
+                        // Redirect to another URL
+                        window.location.href = "Mtime/"; // Replace "/male_page" with the URL of the desired page
+                    } else {
+                        // Redirect to another URL
+                        window.location.href = "Ftime/";
+                    }
+                })
+                .catch(error => {
+                    console.error("Error:", error);
+                });
+        });
+
+        document.getElementById("toggleBtn").innerText = "Start Recording";
+    }
+
+    // Event listener for the upload button
+    document.getElementById('file').addEventListener('change', function () {
+        const file = this.files[0];
+        const formData = new FormData();
+        formData.append('file', file);
+
+        fetch("upload/", {
+            method: "POST",
+            body: formData,
+            headers: {
+                'X-CSRFToken': csrfToken
+            }
+        })
+            .then(response => response.json())
+            .then(data => {
+                const maleProb = data.male_prob;
+                const femaleProb = data.female_prob;
+                if (maleProb > femaleProb) {
+                    // Redirect to another URL
+                    window.location.href = "Mtime/"; // Replace "/male_page" with the URL of the desired page
+                } else {
+                    // Redirect to another URL
+                    window.location.href = "Ftime/";
+                }
+            })
+            .catch(error => {
+                console.error("Error:", error);
+            });
+    });
+    {% endif %}
+</script>
+{% endblock main-content%}

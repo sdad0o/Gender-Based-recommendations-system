@@ -1,0 +1,22 @@
+{% extends "app/base.html" %}
+{% load static %}
+{% block title %}Shop{% endblock title %}
+{% block main-content %}
+<link rel="stylesheet" href="../../static/app/css/maleShope.css">
+<div class='main-wrapper'>
+    <div class="menu">
+      <div class='menu-item Amazon'>
+        <div class='menu-item-title' ><a style=" color: #000000; text-decoration: none;" href="{%url 'category' 'MBO'%}">BOOKS </a></div>
+      </div>
+      <div class='menu-item Lenovo'>
+        <div class='menu-item-title'><a style=" color: #000000; text-decoration: none;" href="{%url 'category' 'MAC'%}">Accessory </a></div>
+      </div>
+      <div class='menu-item'>
+        <div class='menu-item-title'><a style=" color: #000000; text-decoration: none;" href="{%url 'category' 'MTO'%}">Tool </a></div> 
+      </div>
+      <div class='menu-item'>
+        <div class='menu-item-title'><a style=" color: #000000; text-decoration: none;" href="{%url 'category' 'MFT'%}">Fitness </a></div>
+      </div>
+    </div>
+   
+{% endblock main-content %}

@@ -1,0 +1,38 @@
+{% extends "app/baseShop.html" %}
+{% load static %}
+{% block title %}Cayegory{% endblock title %}
+{% block main-content %}
+<link rel="stylesheet" href="{% static 'app/css/category.css' %}">
+<div class='main-wrapper'>
+  <div class="menu">
+    <div class='menu-item Amazon'>
+      <div class='menu-item-title' ><a style=" color: #000000; text-decoration: none;" href="{%url 'category' 'MBO'%}">BOOKS </a></div>
+    </div>
+    <div class='menu-item Lenovo'>
+      <div class='menu-item-title'><a style=" color: #000000; text-decoration: none;" href="{%url 'category' 'MAC'%}">Accessory </a></div>
+    </div>
+    <div class='menu-item'>
+      <div class='menu-item-title'><a style=" color: #000000; text-decoration: none;" href="{%url 'category' 'MTO'%}">Tool </a></div> 
+    </div>
+    <div class='menu-item'>
+      <div class='menu-item-title'><a style=" color: #000000; text-decoration: none;" href="{%url 'category' 'MFT'%}">Fitness </a></div>
+    </div>
+  </div>
+
+<div class="container my-5">
+    <div class="row">
+            <div class="grid-container">
+              {% for prod in product %}
+                    <div class="product-card">
+                      <a href="{% url 'productD' prod.id %}" class="btn">
+                      <img src="{{prod.product_imge.url}}" alt="{{ prod.title }}" class="product-image">
+                      <br><br>  
+                      <h2>{{ prod.title }}</h2>
+                      </a>
+                      </div>
+                {% endfor %} 
+           </div>
+         
+    </div>
+  <div>
+{% endblock main-content %}

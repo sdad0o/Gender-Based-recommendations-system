@@ -1,0 +1,31 @@
+{% extends "app/base.html" %}
+{% load static %}
+{% block title %}Contact Us{% endblock title %}
+{% block main-content %}
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <form id="contact" action="{% url 'contact_success' %}" method="post" class="shadow p-4 bg-white rounded">
+        {% csrf_token %}
+        <h3 class="text-center mb-4">Contact Us</h3>
+        <h4 class="text-center mb-4">We are glad to help you!</h4>
+        <div class="mb-3">
+          <input name="name" placeholder="Your name" type="text" class="form-control" tabindex="1" required autofocus>
+        </div>
+        <div class="mb-3">
+          <input name="email" placeholder="Your Email Address" type="email" class="form-control" tabindex="2" required>
+        </div>
+        <div class="mb-3">
+          <input name="phone_number" placeholder="Your Phone Number (optional)" type="tel" class="form-control" tabindex="3">
+        </div>
+        <div class="mb-3">
+          <textarea name="message" placeholder="Type your message here...." class="form-control" tabindex="5" required></textarea>
+        </div>
+        <div class="mb-3 text-center">
+          <button name="submit" type="submit" id="contact-submit" class="btn btn-primary btn-block" data-submit="...Sending">Submit</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock main-content%}

@@ -1,0 +1,29 @@
+.background {
+  font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    left: 0;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background: #f7f7f7; /* Old browsers */
+    background: -moz-linear-gradient(left,  #ffefa0 0%, #001d33 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(left, #ffefa0 0%,#001d33 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to right,  #ffefa0  0%,#001d33 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffefa0 ', endColorstr='#001d33',GradientType=1 ); /* IE6-9 */
+  }
+  
+  .text {
+    text-align: center;
+    color: white;
+    font-size: 1.5em;
+  }
+  
+  /*
+                   #ffefa0    #001d33
+                    #0787ff  #0324b8
+  
+  */
+  

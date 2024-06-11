@@ -1,0 +1,70 @@
+.main-wrapper {
+  display: flex;
+  min-height: 450px;
+  padding: 20px;
+  padding-top: 30px;
+}
+
+/*--------------------
+Products Menu
+--------------------*/
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 260px;
+  height: 250px;
+  margin-top: 10px;
+  background: -webkit-linear-gradient(top, #3a404d, #181c26);
+  background: linear-gradient(to bottom, #3a404d, #181c26);
+  border-radius: 10px;
+  box-shadow: 0 7px 30px rgba(62, 9, 11, 0.3);
+  color: #23211f;
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 25%;
+  box-sizing: border-box;
+  padding-right: 30px;
+  padding-left: 30px;
+  background: linear-gradient( 0deg, #cd4b4b, #e0574f);
+  cursor: pointer;
+  transition: all 300ms;
+}
+
+.menu-item:nth-child(4) {
+  border-radius: 0 0 10px 10px;
+  background: #ffefa0;
+}
+
+.menu-item:nth-child(3) {
+  background: #ffefa0;
+}
+
+.menu-item:nth-child(2) {
+  background: #ffefa0;
+}
+
+.menu-item:nth-child(1) {
+  border-radius: 10px 10px 0 0;
+  background: #ffefa0;
+}
+
+.menu-item:hover {
+  width: 107%;
+  /*   transform: Scale(1.05); */
+}
+
+.menu-item-title {
+  display: flex;
+  flex: 1;
+  font-weight: 300;
+}
+.active {
+  display: block;
+}
+/**-***********************************************************/

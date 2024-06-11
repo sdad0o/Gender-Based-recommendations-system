@@ -1,0 +1,42 @@
+{% load static %}
+{% block main-content %}
+<link rel="stylesheet" type="text/css" href="{% static 'app/css/details.css' %}">
+<div class="container">
+  <div class="product">
+      <div class="product-photo">
+          <img src="{{ product.product_imge.url }}">
+      </div>
+      <div class="product-detail">
+          <h1 class="product__title">{{ product.title }}</h1>
+          <div class="product__price">Price: ${{ product.price }}</div>
+          <div class="product__subtitle">{{ product.description }}</div>
+          <div class="button-container">
+            <a class="product__button" href="{{ product.product_url }}" onClick="buttonAnimate()">
+              <span>GO to product</span>
+              <span>Success</span>
+            </a>
+            <button class="product__button" onclick="goBack(); buttonAnimate()">Back</button>
+          </div> 
+          <div class="button-container">
+            <form action="{% url 'add_to_wishlist' product.id %}" method="post">
+              {% csrf_token %}
+              <button type="submit" class="product__button">Add to Wishlist</button>
+            </form>
+            <form action="{% url 'remove_from_wishlist' product.id %}" method="post">
+              {% csrf_token %}
+              <button type="submit" class="product__button">Remove from Wishlist</button>
+            </form>
+          </div>         
+      </div>
+  </div>
+</div>
+<script>
+  const button = document.querySelector('.product__button');
+  function buttonAnimate() {
+      button.classList.add('product__button--success');
+  }
+  function goBack() {
+    window.history.back();
+  }
+</script>
+{% endblock main-content %}

@@ -1,0 +1,41 @@
+{% extends 'app/base.html' %}
+{% block main-content %}
+<style>
+  h1{
+    color:white;
+  }
+    .product-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr); /* Three columns with equal width */
+        gap: 20px; /* Gap between grid items */
+      }
+      
+      .product-item {
+        text-align: center;
+      }
+      
+      .product-image {
+        width: 300px; /* Ensure images fill the container */
+        height: 300px; /* Maintain aspect ratio */
+        border-radius: 10px; /* Add rounded corners */
+      }
+    .product-title {
+        color: white;
+
+      }
+      
+</style>
+  <h1>Wishlist</h1><br><br>
+  {% if wishlist.products.all %}
+    <div class="product-grid">
+      {% for product in wishlist.products.all %}
+        <div class="product-item">
+          <img src="{{ product.product_imge.url }}" alt="{{ product.title }}" class="product-image">
+          <p class="product-title">{{ product.title }}</p>
+        </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    <p>Your wishlist is empty.</p>
+  {% endif %}
+{% endblock main-content %}

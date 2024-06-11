@@ -1,0 +1,159 @@
+@import url(https://fonts.googleapis.com/css?family=Montserrat);
+body{
+  background: #314a63;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+*{
+  margin:0;
+  padding:0;
+  font-family:verdana;
+}
+.circle{
+  position: absolute;
+  border-radius: 50%;
+  background: rgb(255, 255, 255);
+  animation: ripple 15s infinite;
+  box-shadow: 0px 0px 1px 0px #508fb9;
+}
+
+.small{
+  width: 200px;
+  height: 200px;
+  left: -100px;
+  bottom: -100px;
+}
+
+.medium{
+  width: 400px;
+  height: 400px;
+  left: -200px;
+  bottom: -200px;
+}
+
+.large{
+  width: 600px;
+  height: 600px;
+  left: -300px;
+  bottom: -300px;
+}
+
+.xlarge{
+  width: 800px;
+  height: 800px;
+  left: -400px;
+  bottom: -400px;
+}
+
+.xxlarge{
+  width: 1000px;
+  height: 1000px;
+  left: -500px;
+  bottom: -500px;
+
+}
+
+.shade1{
+  opacity: 0.2;
+}
+.shade2{
+  opacity: 0.5;
+}
+
+.shade3{
+  opacity: 0.7;
+}
+
+.shade4{
+  opacity: 0.8;
+}
+
+.shade5{
+  opacity: 0.9;
+}
+
+@keyframes ripple{
+  0%{
+    transform: scale(0.8);
+  }
+  
+  50%{
+    transform: scale(1.2);
+  }
+  
+  100%{
+    transform: scale(0.8);
+  }
+}
+
+#abc {
+  width: 100%;
+  height: 50px;
+  background-size: cover;
+  display: flex;
+  justify-content: space-between;
+}
+
+.navbar {
+  width: 100%;
+  height: 50px;
+  background-color: #0005;
+  line-height: 50px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.navbar-nav {
+  margin-right: 30px;
+}
+
+.navbar-nav .nav-item {
+  list-style-type: none;
+  display: inline-block;
+  transition: 0.7s all;
+}
+
+.navbar-nav .nav-item:hover {
+  background-color: rgb(38, 64, 80);
+  color: rgb(40, 82, 109);
+}
+
+.navbar-nav .nav-link {
+  text-decoration: none;
+  color: #fff;
+  padding: 15px;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 200px;
+  font-size: small;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  text-decoration: none;
+  color: white;
+}
+
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+.dropdown-menu a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-menu a:hover {
+  background-color: #f1f1f1;
+}

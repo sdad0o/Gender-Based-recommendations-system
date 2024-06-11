@@ -1,0 +1,43 @@
+{% extends "app/base.html" %}
+{% load static %}
+{% block title %}profile{% endblock title %}
+{% block main-content %}
+<div class="container my-5">
+    <div class="row">
+        <div class="col text-center">
+            <h3 class="text-center mb-4">Welcome <span class="text-capitalize">{{ request.user }}</span></h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-8 offset-sm-2">
+            <form action="" method="post">
+                {% csrf_token %}
+                {% for fm in form %}
+                <div class="mb-3">
+                    <label class="form-label">{{ fm.label_tag }}</label>
+                    {{ fm }}
+                    <small class="text-danger">{{ fm.errors|striptags }}</small>
+                </div>
+                {% endfor %}
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary mt-4">Submit</button>
+                </div>
+            </form>
+            {% if form.non_field_errors %}
+            <div class="alert alert-danger my-3" role="alert">
+                {% for error in form.non_field_errors %}
+                <p>{{ error }}</p>
+                {% endfor %}
+            </div>
+            {% endif %}
+            {% if messages %}
+            {% for msg in messages %}
+            <div class="alert alert-{{ msg.tags }} my-3" role="alert">
+                {{ msg }}
+            </div>
+            {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock main-content %}
